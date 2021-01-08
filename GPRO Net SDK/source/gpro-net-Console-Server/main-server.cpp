@@ -18,8 +18,8 @@
 	GPRO Net SDK: Networking framework.
 	By Daniel S. Buckstein
 
-	main-client.c
-	Main source for console client application.
+	main-server.c/.cpp
+	Main source for console server application.
 */
 
 #include "gpro-net/gpro-net.h"
@@ -27,6 +27,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+
+#include "RakNet/RakPeerInterface.h"
 
 
 int main(int const argc, char const* const argv[])

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\source\gpro-net-Console-Server\main-server.c">
+    <ClCompile Include="..\..\..\source\gpro-net-Console-Server\main-server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
