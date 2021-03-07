@@ -91,3 +91,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Unity directories
+Unity/

@@ -18,17 +18,14 @@
 	GPRO Net SDK: Networking framework.
 	By Daniel S. Buckstein
 
-	gpro-net.h
-	Main include for framework.
+	gpro-net-Client-Plugin.cpp
+	Main implementation for plugin; instantiate and manage networking.
 */
 
-#ifndef _GPRO_NET_H_
-#define _GPRO_NET_H_
+#include "gpro-net-Client-Plugin.h"
 
 
-#include "gpro-net/gpro-net-util/gpro-net-lib.h"
-#include "gpro-net/gpro-net-util/gpro-net-console.h"
-#include "gpro-net/gpro-net-util/gpro-net-gamestate.h"
-
-
-#endif	// !_GPRO_NET_H_
+int foo(int bar)
+{
+	return (bar + 1);
+}

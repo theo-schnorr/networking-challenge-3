@@ -18,25 +18,28 @@
 	GPRO Net SDK: Networking framework.
 	By Daniel S. Buckstein
 
-	main-server.c/.cpp
-	Main source for console server application.
+	main-client-win.c/.cpp
+	Main source for client windowed.
 */
 
-#include "gpro-net/gpro-net.h"
+#if (defined _WINDOWS || defined _WIN32)
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <Windows.h>
 
 
-#include "RakNet/RakPeerInterface.h"
+//-----------------------------------------------------------------------------
+// windowed entry point
 
-
-int main(int const argc, char const* const argv[])
+int APIENTRY wWinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR lpCmdLine,
+	_In_ int nShowCmd
+)
 {
 
-
-	printf("\n\n");
-	system("pause");
 }
+
+
+#endif	// (defined _WINDOWS || defined _WIN32)
