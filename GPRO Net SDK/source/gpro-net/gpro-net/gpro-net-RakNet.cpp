@@ -109,3 +109,95 @@ namespace gproNet
 		return count;
 	}
 }
+
+
+/* INITIAL INFORMATION FROM QUIZ TO BE EDITED*/
+
+// Description of spatial pose.
+struct sSpatialPose
+{
+	float scale[3];     // non-uniform scale
+	float rotate[3];    // orientation as Euler angles
+	float translate[3]; // translation
+
+	// read from stream
+	RakNet::BitStream& Read(RakNet::BitStream& bitstream)
+	{
+		/*
+		ALT CODE
+			send information to decompress function
+			send out decompressed data
+		*/
+		bitstream.Read(scale[0]);
+		bitstream.Read(scale[1]);
+		bitstream.Read(scale[2]);
+		bitstream.Read(rotate[0]);
+		bitstream.Read(rotate[1]);
+		bitstream.Read(rotate[2]);
+		bitstream.Read(translate[0]);
+		bitstream.Read(translate[1]);
+		bitstream.Read(translate[2]);
+		return bitstream;
+	}
+
+	// write to stream
+	RakNet::BitStream& Write(RakNet::BitStream& bitstream) const
+	{
+		/*
+		ALT CODE
+			send information into compressions function
+			send compressed data to the bitstream
+		*/
+
+		// Example line of call
+		bitstream.Write(CompressData(scale[0]));
+
+		bitstream.Write(scale[1]);
+		bitstream.Write(scale[2]);
+		bitstream.Write(rotate[0]);
+		bitstream.Write(rotate[1]);
+		bitstream.Write(rotate[2]);
+		bitstream.Write(translate[0]);
+		bitstream.Write(translate[1]);
+		bitstream.Write(translate[2]);
+		return bitstream;
+	}
+};
+
+
+/* QUICK CODE UNDER THE ASSUMPTION THAT THESE FLOATS WORK FROM ABOUT -1 TO 1 IN USAGE */
+
+// uniform compression size for formula on how to compress and decompress data
+int compressionSize = ...;
+
+// compress into ints for a smaller data type than floats
+int CompressData(float data)
+{
+	return (int)(data * compressionSize);
+}
+
+float DecompressData(int data)
+{
+	return (float) data / compressionSize;
+}
+
+// This above method can be done with smaller data types like chars
+// Smaller data types means less precision though and more data lost in compression
+
+
+/* ANOTHER OPTION */
+
+// if this spatial data being taken in is based off of player inputs, we can track those instead
+
+struct Inputs {
+	bool w;
+	bool a;
+	bool s;
+	bool d;
+	bool space;
+	bool shoot;
+};
+
+// Go on with usual processing, but instead, server and clients take in other inputs and process them as movement on their screens
+// Bools would waaaay lower data that's being sent back and forth
+// This could put a lot more processing on each player and the server than just simply sending data
